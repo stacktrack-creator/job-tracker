@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Application {
+  id              String   @id @default(cuid())
+  jobTitle        String
+  company         String
+  location        String   @default("")
+  jobDescription  String   @default("")
+  dateApplied     DateTime @default(now())
+  status          String   @default("APPLIED")
+  notes           String   @default("")
+  resumePath      String?
+  coverLetterPath String?
+  sourceUrl       String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
